@@ -1,0 +1,39 @@
+<h1>Cadastrar Apontamento</h1>
+<div class="well">
+    <div class="alert alert-danger" role="alert" *ngIf="msgErro">
+        {{ msgErro }}
+    </div>
+    <form role="form">
+        <div class="form-group">
+            <label class="control-label" for="dia">Dia</label>
+            <input type="date" class="form-control" name="dia"
+                id="dia" [(ngModel)]="apontamento.dia">
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="horaInicio">Hora Início</label>
+            <input type="text" class="form-control" name="horaInicio"
+                id="horaInicio" [(ngModel)]="apontamento.horaInicio">
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="email">Hora Fim</label>
+            <input type="text" class="form-control" name="horaFim"
+                id="horaFim" [(ngModel)]="apontamento.horaFim">
+        </div>
+        <div class="form-group">
+         <label for="funcionario">Funcionário</label>
+           <ul>
+           </ul>
+           <select class="form-control" id="funcionario" name="funcionario" [(ngModel)]="apontamento.funcionario" required>
+             <option *ngFor="let funcionario of funcionarios" [value]="funcionario.id">{{funcionario.nome}}</option>
+           </select>
+        </div>
+        <div class="form-group text-center">
+            <button class="btn btn-success" (click)="cadastrar()">
+                Cadastrar
+            </button>
+			<a class="btn btn-default" [routerLink]="['/apontamento-listar']">
+                Voltar
+            </a>
+        </div>
+    </form>
+</div>

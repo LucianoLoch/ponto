@@ -1,0 +1,49 @@
+<h1>Listagem de Funcionários</h1>
+
+<div class="alert alert-danger" role="alert" *ngIf="msgErro">
+    {{ msgErro }}
+</div>
+
+<div>
+    <table class="table table-striped">
+        <tr>
+            <th>Nome</th>
+            <th>Email</th>
+            <th>Carga Horária Diária</th>
+            <th>Carga Horária Mensal</th>
+            <th class="text-right">
+                <a class="btn btn-success"
+                    [routerLink]="['/funcionario-cadastrar']">
+                    Cadastrar
+                </a>
+            </th>
+        </tr>
+        <tr *ngFor="var funcionario of funcionarios;">
+            <td>{{ funcionario.nome }}</td>
+            <td>{{ funcionario.email }}</td>
+            <td>{{ funcionario.cargaHorariaDiaria }}</td>
+            <td>{{ funcionario.cargaHorariaMensal }}</td>
+            <td>
+				<a class="btn btn-warning"
+                    [routerLink]="['/funcionario-visualizar/'+funcionario.id]">
+                    Visualizar
+                </a>
+				<a class="btn btn-info"
+                    [routerLink]="['/funcionario-editar/'+funcionario.id]">
+                    Editar
+                </a>
+                <button type="button" class="btn btn-danger"
+                    data-toggle="modal" data-target="#modalExcluir"
+                    (click)="excluir(funcionario.id)">
+                    Excluir
+                </button>
+            </td>
+        </tr>
+    </table>
+    <modal-util
+        [id]="'modalExcluir'"
+        [titulo]="'Excluir Funcionário'"
+        [descricao]="'Deseja realmente excluir o Funcionário selecionado?'"
+        (onConfirm)="onExcluir($event)">
+    </modal-util>
+</div>

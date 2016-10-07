@@ -1,0 +1,50 @@
+<h1>Listagem de Apontamentos</h1>
+
+<div class="alert alert-danger" role="alert" *ngIf="msgErro">
+    {{ msgErro }}
+</div>
+
+<div>
+    <table class="table table-striped">
+        <tr>
+            <th>Dia</th>
+            <th>Hora Início</th>
+            <th>Hora Fim</th>
+            <th>Funcionário</th>
+            <th class="text-right">
+                <a class="btn btn-success"
+                    [routerLink]="['/apontamento-cadastrar']">
+                    Cadastrar
+                </a>
+            </th>
+        </tr>
+        <tr *ngFor="let apontamento of apontamentos; #id=index">
+            <td>{{ apontamento.dia }}</td>
+            <td>{{ apontamento.horaInicio }}</td>
+            <td>{{ apontamento.horaFim }}</td>
+            <td>{{ apontamento.funcionario }}</td>
+
+            <td>
+				<a class="btn btn-warning"
+                    [routerLink]="['/apontamento-visualizar/'+apontamento.id]">
+                    Visualizar
+                </a>
+				<a class="btn btn-info"
+                    [routerLink]="['/apontamento-editar/'+apontamento.id]">
+                    Editar
+                </a>
+                <button type="button" class="btn btn-danger"
+                    data-toggle="modal" data-target="#modalExcluir"
+                    (click)="excluir(apontamento.id)">
+                    Excluir
+                </button>
+            </td>
+        </tr>
+    </table>
+    <modal-util
+        [id]="'modalExcluir'"
+        [titulo]="'Excluir Aluno'"
+        [descricao]="'Deseja realmente excluir o apontamento selecionado?'"
+        (onConfirm)="onExcluir($event)">
+    </modal-util>
+</div>

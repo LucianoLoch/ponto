@@ -1,0 +1,46 @@
+<h1>Listagem de Apontamentos</h1>
+
+<div class="alert alert-danger" role="alert" *ngIf="msgErro">
+    {{ msgErro }}
+</div>
+
+<div>
+    <table class="table table-striped">
+        <tr>
+            <th>Descrição</th>
+            <th>Apontamento</th>
+            <th class="text-right">
+                <a class="btn btn-success"
+                    [routerLink]="['/observacao-cadastrar']">
+                    Cadastrar
+                </a>
+            </th>
+        </tr>
+        <tr *ngFor="let observacao of observacoes; #id=index">
+            <td>{{ observacao.descricao }}</td>
+            <td>{{ observacao.apontamento }}</td>
+
+            <td>
+				<a class="btn btn-warning"
+                    [routerLink]="['/observacao-visualizar/'+observacao.id]">
+                    Visualizar
+                </a>
+				<a class="btn btn-info"
+                    [routerLink]="['/observacao-editar/'+observacao.id]">
+                    Editar
+                </a>
+                <button type="button" class="btn btn-danger"
+                    data-toggle="modal" data-target="#modalExcluir"
+                    (click)="excluir(observacao.id)">
+                    Excluir
+                </button>
+            </td>
+        </tr>
+    </table>
+    <modal-util
+        [id]="'modalExcluir'"
+        [titulo]="'Excluir Aluno'"
+        [descricao]="'Deseja realmente excluir o observacao selecionado?'"
+        (onConfirm)="onExcluir($event)">
+    </modal-util>
+</div>

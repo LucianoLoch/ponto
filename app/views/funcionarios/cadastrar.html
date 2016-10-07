@@ -1,0 +1,38 @@
+<h1>Cadastrar Funcionário</h1>
+
+<div class="well">
+    <div class="alert alert-danger" role="alert" *ngIf="msgErro">
+        {{ msgErro }}
+    </div>
+    <form role="form">
+        <div class="form-group">
+            <label class="control-label" for="nome">Nome</label>
+            <input type="text" class="form-control" name="nome"
+                id="nome" [(ngModel)]="funcionario.nome">
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="email">Email</label>
+            <input type="email" class="form-control" name="email"
+                id="email" [(ngModel)]="funcionario.email">
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="email">Carga Horária Diária</label>
+            <input type="text" class="form-control" name="cargaHorariaDiaria"
+                id="cargaHorariaDiaria" [(ngModel)]="funcionario.cargaHorariaDiaria">
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="email">Carga Horária Mensal</label>
+            <input type="text" class="form-control" name="cargaHorariaMensal"
+                id="cargaHorariaMensal" [(ngModel)]="funcionario.cargaHorariaMensal">
+        </div>
+        <div class="form-group text-center">
+            <button class="btn btn-success" (click)="cadastrar()">
+                Cadastrar
+            </button>
+			<a class="btn btn-default" [routerLink]="['/funcionario-listar']">
+                Voltar
+            </a>
+        </div>
+    </form>
+</div>
+ 

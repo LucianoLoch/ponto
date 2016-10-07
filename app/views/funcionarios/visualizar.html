@@ -1,0 +1,27 @@
+<h1>Visualizar Funcionário</h1>
+
+<div class="alert alert-danger" role="alert" *ngIf="msgErro">
+    {{ msgErro }}
+</div>
+
+<div>
+    <table class="table table-striped">
+        <tr>
+            <th>Nome</th>
+			<td>{{ funcionario.nome }}</td>
+		</tr>
+		<tr>
+            <th>Email</th>
+            <td>{{ funcionario.email }}</td>
+            <th>Carga Horária Diária</th>
+            <td>{{ funcionario.cargaHorariaDiaria }}</td>
+            <th>Carga Horária Mensam</th>
+            <td>{{ funcionario.cargaHorariaMensal }}</td>
+        </tr>
+    </table>
+	<div class="text-center">
+		<a class="btn btn-default" [routerLink]="['/funcionario-listar']">
+			Voltar
+		</a>
+	</div>
+</div>

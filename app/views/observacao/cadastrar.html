@@ -1,0 +1,30 @@
+
+<h1>Cadastrar Observação</h1>
+<div class="well">
+    <div class="alert alert-danger" role="alert" *ngIf="msgErro">
+        {{ msgErro }}
+    </div>
+    <form role="form">
+        <div class="form-group">
+            <label class="control-label" for="descricao">Descrição</label>
+            <input type="text" class="form-control" name="descricao"
+                id="dia" [(ngModel)]="observacao.descricao">
+        </div>
+        <div class="form-group">
+         <label for="apontamento">Apontamentos</label>
+           <ul>
+           </ul>
+           <select class="form-control" id="apontamento" name="apontamento" [(ngModel)]="observacao.apontamento" required>
+             <option *ngFor="let apontamento of apontamentos" [value]="apontamento.id">{{apontamento.dia}}</option>
+           </select>
+        </div>
+        <div class="form-group text-center">
+            <button class="btn btn-success" (click)="cadastrar()">
+                Cadastrar
+            </button>
+			<a class="btn btn-default" [routerLink]="['/observacao-listar']">
+                Voltar
+            </a>
+        </div>
+    </form>
+</div>
